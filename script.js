@@ -8,7 +8,7 @@ const filterButtons = document.querySelectorAll('.filter-button');
 const projectCards = document.querySelectorAll('.project-card');
 const contactForm = document.querySelector('#contact-form');
 
-const cvUrl = 'https://drive.google.com/file/d/1MgYwb0NYqoWDnHqa5p-j4-ExKwirc2C_/view?usp=sharing';
+const cvUrl = 'https://drive.google.com/file/d/17WXEoFSbuI-MvWiSUym67JZBXIXgKX8f/view?usp=sharing';
 document.querySelectorAll('a[href*="drive.google.com/file/d/"]').forEach((link) => {
   link.href = cvUrl;
 });
