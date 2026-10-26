@@ -876,6 +876,60 @@ h3 {
   margin-top: 8px;
 }
 
+/* Portfolio discovery: searchable, accessible GhostForge case studies */
+.project-toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto 24px;
+}
+
+.project-search-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.project-search-wrap {
+  position: relative;
+  width: min(100%, 590px);
+}
+
+.project-search-wrap > i {
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  transform: translateY(-50%);
+  color: var(--gold-soft);
+  pointer-events: none;
+}
+
+.project-search-wrap input {
+  display: block;
+  width: 100%;
+  padding: 13px 18px 13px 49px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.93rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-search-wrap input::placeholder {
+  color: var(--text-soft);
+  opacity: 0.85;
+}
+
+.project-search-wrap input:focus-visible {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(231, 183, 95, 0.1);
+}
+
 .project-filters {
   display: flex;
   flex-wrap: wrap;
@@ -993,6 +1047,126 @@ h3 {
   border-radius: 999px;
   color: var(--text-soft);
   font-size: 0.72rem;
+}
+
+.project-results {
+  margin: -14px 0 26px;
+  color: var(--text-soft);
+  text-align: center;
+  font-size: 0.82rem;
+}
+
+.project-empty {
+  padding: 30px 16px;
+  color: var(--text-soft);
+  text-align: center;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-small);
+}
+
+.project-card--featured {
+  background: linear-gradient(138deg, rgba(141, 91, 127, 0.13), transparent 68%), var(--surface);
+}
+
+.project-card--wide {
+  grid-column: 1 / -1;
+}
+
+.project-card--wide .project-top {
+  margin-bottom: 24px;
+}
+
+.project-status {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 20px;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.project-status::before {
+  content: "";
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.project-status--released::before {
+  background: var(--success);
+}
+
+.project-status--building::before {
+  background: #a4a7f1;
+}
+
+.project-status--candidate::before {
+  background: var(--gold-soft);
+}
+
+.suite-capabilities {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 23px;
+}
+
+.suite-capabilities > div {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-small);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.suite-capabilities strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--text);
+  font-size: 0.89rem;
+}
+
+.suite-capabilities span {
+  display: block;
+  color: var(--text-soft);
+  font-size: 0.79rem;
+  line-height: 1.6;
+}
+
+.project-link {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  color: var(--gold-soft);
+  font-size: 0.83rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+}
+
+.project-link:hover,
+.project-link:focus-visible {
+  color: var(--gold);
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 620px) {
+  .suite-capabilities { grid-template-columns: 1fr; }
+  .project-search-wrap input { font-size: 0.85rem; }
 }
 
 .ai-section {
