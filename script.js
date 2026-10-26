@@ -6,6 +6,9 @@ const sections = document.querySelectorAll('main section[id]');
 const backToTop = document.querySelector('#back-to-top');
 const filterButtons = document.querySelectorAll('.filter-button');
 const projectCards = document.querySelectorAll('.project-card');
+const projectSearch = document.querySelector('#project-search');
+const projectResults = document.querySelector('#project-results');
+const projectEmpty = document.querySelector('#project-empty');
 const contactForm = document.querySelector('#contact-form');
 
 const cvUrl = 'https://drive.google.com/file/d/17qcMrKC3F8SMs9sNRCUQzop67qmKQT3h/view?usp=drivesdk';
@@ -73,20 +76,45 @@ document.querySelectorAll('.reveal').forEach((element, index) => {
   revealObserver.observe(element);
 });
 
+let activeProjectFilter = 'all';
+
+const updateProjectResults = () => {
+  const searchTerm = (projectSearch?.value || '').trim().toLocaleLowerCase();
+  let visibleCount = 0;
+
+  projectCards.forEach((card) => {
+    const categories = (card.dataset.category || '').split(/\\s+/);
+    const matchesFilter = activeProjectFilter === 'all' || categories.includes(activeProjectFilter);
+    const matchesSearch = !searchTerm || card.textContent.toLocaleLowerCase().includes(searchTerm);
+    const shouldShow = matchesFilter && matchesSearch;
+
+    card.classList.toggle('hidden', !shouldShow);
+    card.setAttribute('aria-hidden', String(!shouldShow));
+    if (shouldShow) visibleCount += 1;
+  });
+
+  if (projectResults) {
+    projectResults.textContent = `Showing ${visibleCount} of ${projectCards.length} project${projectCards.length === 1 ? '' : 's'}`;
+  }
+  if (projectEmpty) projectEmpty.hidden = visibleCount !== 0;
+};
+
 filterButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    const filter = button.dataset.filter;
+    activeProjectFilter = button.dataset.filter || 'all';
 
-    filterButtons.forEach((item) => item.classList.remove('active'));
-    button.classList.add('active');
-
-    projectCards.forEach((card) => {
-      const categories = card.dataset.category.split(' ');
-      const shouldShow = filter === 'all' || categories.includes(filter);
-      card.classList.toggle('hidden', !shouldShow);
+    filterButtons.forEach((item) => {
+      const isSelected = item === button;
+      item.classList.toggle('active', isSelected);
+      item.setAttribute('aria-pressed', String(isSelected));
     });
+
+    updateProjectResults();
   });
 });
+
+projectSearch?.addEventListener('input', updateProjectResults);
+updateProjectResults();
 
 contactForm?.addEventListener('submit', (event) => {
   event.preventDefault();
