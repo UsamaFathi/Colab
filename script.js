@@ -83,7 +83,7 @@ const updateProjectResults = () => {
   let visibleCount = 0;
 
   projectCards.forEach((card) => {
-    const categories = (card.dataset.category || '').split(/\\s+/);
+    const categories = (card.dataset.category || '').split(/\s+/);
     const matchesFilter = activeProjectFilter === 'all' || categories.includes(activeProjectFilter);
     const matchesSearch = !searchTerm || card.textContent.toLocaleLowerCase().includes(searchTerm);
     const shouldShow = matchesFilter && matchesSearch;
