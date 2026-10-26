@@ -11,7 +11,7 @@ const projectResults = document.querySelector('#project-results');
 const projectEmpty = document.querySelector('#project-empty');
 const contactForm = document.querySelector('#contact-form');
 
-const cvUrl = 'https://drive.google.com/file/d/17qcMrKC3F8SMs9sNRCUQzop67qmKQT3h/view?usp=drivesdk';
+const cvUrl = 'https://drive.google.com/file/d/1KUhAzdNNjWiCywNhKgs_4P5NEkUNJOEb/view?usp=drivesdk';
 document.querySelectorAll('a[href*="drive.google.com/file/d/"]').forEach((link) => {
   link.href = cvUrl;
 });
